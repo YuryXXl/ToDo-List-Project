@@ -2,7 +2,7 @@
 
 function TodoForm() {
   return (
-    <form className="d-flex flex-row p-3 border border-2 rounded-2 align-items-center gap-2 shadow">
+    <form className="z-1 d-flex flex-row p-3 border border-2 rounded-2 align-items-center gap-2 shadow">
        <div className="checkbox">
         <input type="checkbox" className="form-check-input" />
        </div>
