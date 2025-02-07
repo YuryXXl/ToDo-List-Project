@@ -1,15 +1,13 @@
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
+.bg-bone-white {
+  background-color: #f9f6ee;
 }
 
 .pulse {
   animation: pulse 2s infinite;
+}
+.neon-shadow {
+  box-shadow: 0 0 20px rgb(193, 184, 184);
+
 }
 
 @keyframes pulse {
