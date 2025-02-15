@@ -3,7 +3,7 @@ import { IoTrashSharp } from "react-icons/io5";
 
 
 
-function TaskCard({task}) {
+function TaskCard({task, removeTask}) {
   return (
     <div className="col-6">
       <div className="card">
@@ -15,7 +15,7 @@ function TaskCard({task}) {
             <input
               className="form-check-input"
               type="checkbox"
-              value={task.checked}
+              checked={task.checked}
             />
         
           </div>
@@ -23,9 +23,9 @@ function TaskCard({task}) {
             {task.todo}
           </h5>
          </div>
-          <div className="text-body">
+          <button onClick={() => removeTask(task.id)} className="text-danger btn">
             <IoTrashSharp />
-          </div>
+          </button>
         </div>
       </div>
     </div>

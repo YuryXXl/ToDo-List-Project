@@ -18,7 +18,7 @@ function TaskForm({ addTask }) {
 
     const newTask = {
       id: Date.now(),
-      task: task,
+      todo: task,
       checked: checked,
     };
 
