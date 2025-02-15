@@ -5,14 +5,19 @@ import { useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([
-    { id: 1001, task: "Task 1", checked: false },
-    { id: 1002, task: "Task 2", checked: false },
-    { id: 1003, task: "Task 3", checked: false },
+    { id: 1001, todo: "Task 1", checked: false },
+    { id: 1002, todo: "Task 2", checked: false },
+    { id: 1003, todo: "Task 3", checked: false },
   ]);
   
   const addTask = (newTask) => {
     console.log("newTask", newTask);
     setTasks((prev) => [...prev, newTask]);
+  };
+
+  const deleteTask = (id) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+
   }
   return (
     <>

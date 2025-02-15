@@ -15,14 +15,12 @@ function TaskCard({task}) {
             <input
               className="form-check-input"
               type="checkbox"
-              value=""
-              id="flexCheckDefault"
-              checked={task.completed}
+              value={task.checked}
             />
         
           </div>
           <h5 className="card-title m-0 text-success text-opacity-75">
-            {task.text}
+            {task.todo}
           </h5>
          </div>
           <div className="text-body">

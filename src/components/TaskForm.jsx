@@ -42,7 +42,7 @@ function TaskForm({ addTask }) {
             className="form-check-input"
             type="checkbox"
             value={checked}
-            id="flex-Check"
+        
           />
         </div>
         <div className="form-floating">
