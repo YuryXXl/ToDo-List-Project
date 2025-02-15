@@ -5,10 +5,10 @@ import { IoTrashSharp } from "react-icons/io5";
 
 function TaskCard({task, removeTask}) {
   return (
-    <div className="col-6">
+    <div className="col-8 rounded-2 col-lg-4">
       <div className="card">
-        <div className="card-body d-flex justify-content-between">
-         <div className="d-flex align-items-center">
+        <div className="card-body d-flex justify-content-between ">
+         <div className="d-flex align-items-center gap-1">
 
 
           <div className="form-check">

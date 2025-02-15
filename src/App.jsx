@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import { useState } from "react";
+import TaskFooter from "./TaskFooter";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -14,6 +15,8 @@ function App() {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
+
+
   return (
     <>
       <Navbar />
@@ -21,6 +24,7 @@ function App() {
         <TaskForm addTask={addTask} />
       </div>
       <TaskList tasks={tasks} removeTask={removeTask} />
+      <TaskFooter />
     </>
   );
 }

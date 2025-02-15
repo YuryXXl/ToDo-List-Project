@@ -33,9 +33,9 @@ function TaskForm({ addTask }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="col-6 p-3 border border-2 rounded-2 mx-auto mt-2 d-flex justify-content-between align-items-center shadow col-lg-3"
+      className="col-8 p-3 border border-2 rounded-2 mx-auto mt-2 d-flex justify-content-between align-items-center shadow col-lg-4"
     >
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center gap-2">
         <div className="form-check">
           <input
             onChange={handleCheckboxInput}
@@ -50,11 +50,11 @@ function TaskForm({ addTask }) {
             onChange={handleTaskInput}
             type="text"
             value={task}
-            className="form-control text-success text-opacity-75"
+            className="form-control text-success text-opacity-50"
             id="task-title "
             placeholder="Add a task"
           />
-          <label htmlFor="task-title ">Create a new task</label>
+          <label htmlFor="task-title" className="text-success text-opacity-75">Create a new task</label>
         </div>
       </div>
 
