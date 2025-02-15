@@ -1,23 +1,14 @@
-import React from 'react'
-import { useState } from 'react'
 
-function TaskList() {
-    const [tasks, setTasks] = useState([]);
+import TaskCard from "./TaskCard";
+
+function TaskList({tasks}) {
   return (
-    <div className='task-list'>
-      <ul className='tasks'>
+    <div className="task-list d-flex flex-column gap-2 align-items-center mt-5">
         {tasks.map((task) => (
-          <li>{task}</li>
+          <TaskCard key={task.id} task={task} />
         ))}
-        
-      </ul>
-      <div className='footer'>
-        <div className='tasks-left'></div>
-        <div className='clear-completed'></div>
-        <div className='filters'></div>
-      </div>
     </div>
-  )
+  );
 }
 
-export default TaskList
+export default TaskList;
