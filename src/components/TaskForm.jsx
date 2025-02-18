@@ -3,7 +3,6 @@ import { useState } from "react";
 
 function TaskForm({ addTask }) {
   const [task, setTask] = useState("");
-  
 
   const handleTaskInput = (e) => {
     setTask(e.target.value);
@@ -27,7 +26,6 @@ function TaskForm({ addTask }) {
     console.log("new Task created", newTask);
 
     setTask("");
-
   };
 
   return (
@@ -42,8 +40,6 @@ function TaskForm({ addTask }) {
             className="form-check-input"
             type="checkbox"
             value={false}
-          
-        
           />
         </div>
         <div className="form-floating">
@@ -55,7 +51,9 @@ function TaskForm({ addTask }) {
             id="task-title "
             placeholder="Add a task"
           />
-          <label htmlFor="task-title" className="text-success text-opacity-75">Create a new task</label>
+          <label htmlFor="task-title" className="text-success text-opacity-75">
+            Create a new task
+          </label>
         </div>
       </div>
 

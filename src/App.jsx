@@ -7,7 +7,7 @@ import FooterFilter from "./components/FooterFilter";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
-  const tasksLeft = tasks.filter(task => !task.completed).length;
+  const tasksLeft = tasks.filter((task) => !task.completed).length;
   console.log("tasksLeft", tasksLeft);
 
   const addTask = (newTask) => {
@@ -19,7 +19,7 @@ function App() {
 
   const completeTask = (id) => {
     setTasks(
-      tasks.map((task) => 
+      tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
@@ -33,8 +33,6 @@ function App() {
     if (filter === "active") return !task.completed;
     return true;
   });
-    
-   
 
   return (
     <>
@@ -48,10 +46,10 @@ function App() {
         completeTask={completeTask}
         removeTask={removeTask}
       />
-      <FooterFilter 
-      setFilter={setFilter}
-      tasksLeft={tasksLeft}
-      removeCompletedTask={removeCompletedTask}
+      <FooterFilter
+        setFilter={setFilter}
+        tasksLeft={tasksLeft}
+        removeCompletedTask={removeCompletedTask}
       />
     </>
   );
