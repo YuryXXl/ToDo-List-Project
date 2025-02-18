@@ -1,9 +1,15 @@
 import { IoTrashSharp } from "react-icons/io5";
+import { useState } from "react";
 
 
 
 
-function TaskCard({task, removeTask}) {
+function TaskCard({task, removeTask, completeTask}) {
+
+    const [isStrike, setIsStrike] = useState(false);
+    
+    
+    
   return (
     <div className="col-8 rounded-2 col-lg-4">
       <div className="card">
@@ -12,14 +18,18 @@ function TaskCard({task, removeTask}) {
 
 
           <div className="form-check">
+            <label htmlFor="exampleCheck1"></label>
             <input
               className="form-check-input"
               type="checkbox"
-              checked={task.checked}
+              checked={isStrike}
+              onChange={(e) => setIsStrike(e.target.checked)}
+              onClick={() => completeTask(task.id)}
+             
             />
         
           </div>
-          <h5 className="card-title m-0 text-success text-opacity-75">
+          <h5 style={{ textDecoration: isStrike ? "line-through" : "none" }} className="card-title m-0 text-success text-opacity-75">
             {task.todo}
           </h5>
          </div>
@@ -31,5 +41,6 @@ function TaskCard({task, removeTask}) {
     </div>
   );
 }
+
 
 export default TaskCard;

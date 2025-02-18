@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function TaskForm({ addTask }) {
   const [task, setTask] = useState("");
-  const [checked, setChecked] = useState("");
+  
 
   const handleTaskInput = (e) => {
     setTask(e.target.value);
@@ -19,7 +19,7 @@ function TaskForm({ addTask }) {
     const newTask = {
       id: Date.now(),
       todo: task,
-      checked: checked,
+      checked: false,
     };
 
     addTask(newTask);
@@ -27,13 +27,13 @@ function TaskForm({ addTask }) {
     console.log("new Task created", newTask);
 
     setTask("");
-    setChecked("");
+
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="col-8 p-3 border border-2 rounded-2 mx-auto mt-2 d-flex justify-content-between align-items-center shadow col-lg-4"
+      className="mb-2 col-8 p-3 border border-2 rounded-2 mx-auto mt-2 d-flex justify-content-between align-items-center col-lg-4"
     >
       <div className="d-flex align-items-center gap-2">
         <div className="form-check">
@@ -41,7 +41,8 @@ function TaskForm({ addTask }) {
             onChange={handleCheckboxInput}
             className="form-check-input"
             type="checkbox"
-            value={checked}
+            value={false}
+          
         
           />
         </div>
@@ -58,7 +59,7 @@ function TaskForm({ addTask }) {
         </div>
       </div>
 
-      <div className="">
+      <div className="p-2">
         <FaPlus
           type="submit"
           onClick={handleSubmit}

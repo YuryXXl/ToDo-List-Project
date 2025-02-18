@@ -1,15 +1,17 @@
 
-import { HiH3 } from "react-icons/hi2";
 import TaskCard from "./TaskCard";
 
-function TaskList({tasks, removeTask}) {
-  return (tasks.length < 1 ? (<div className="task-list d-flex flex-column gap-2 align-items-center mt-5 text-success text-opacity-50">No tasks yet</div>) :
-    (<div className="task-list d-flex flex-column gap-2 align-items-center mt-5">
+
+
+
+function TaskList({tasks, removeTask, completeTask}) {
+  return (tasks.length < 1 ? (<ul className="task-list d-flex flex-column align-items-center mt-5 text-success text-opacity-50">No tasks yet</ul>) :
+    (<li className="task-list d-flex flex-column align-items-center">
         {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} removeTask={removeTask}/>
+          <TaskCard key={task.id} task={task} removeTask={removeTask} completeTask={completeTask} onClick={() => completeTask(task.checked)}/>
+
         ))}
-    </div>
-   
+    </li>
     )
   )
 }
