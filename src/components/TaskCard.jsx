@@ -5,7 +5,7 @@ function TaskCard({ task, removeTask, completeTask }) {
   const [isStrike, setIsStrike] = useState(false);
 
   return (
-    <div className="col-8 rounded-2 col-lg-4">
+    <div className="bg-light col-8 rounded-2 col-lg-4">
       <div className="card">
         <div className="card-body d-flex justify-content-between ">
           <div className="d-flex align-items-center gap-1">

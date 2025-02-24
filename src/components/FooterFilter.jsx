@@ -3,7 +3,7 @@ import React from "react";
 const FooterFilter = ({ setFilter, tasksLeft, removeCompletedTask }) => {
   return (
     <div>
-      <div className="mb-2 col-8 p-3 border border-2 rounded-2 mx-auto d-flex justify-content-between align-items-center col-lg-4">
+      <div className="bg-light mb-2 col-8 p-3 border border-2 rounded-2 mx-auto d-flex justify-content-between align-items-center col-lg-4 gap-3">
         <div>
           <div className="tasks-left text-success text-opacity-50">
             {tasksLeft} tasks left

@@ -15,6 +15,8 @@ function TaskForm({ addTask }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!task) return;
+
     const newTask = {
       id: Date.now(),
       todo: task,
@@ -31,7 +33,8 @@ function TaskForm({ addTask }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-2 col-8 p-3 border border-2 rounded-2 mx-auto mt-2 d-flex justify-content-between align-items-center col-lg-4"
+      className="bg-light mb-2 col-8 p-3 border border-2 rounded-2 mx-auto mt-2 d-flex justify-content-between align-items-center col-lg-4"
+     
     >
       <div className="d-flex align-items-center gap-2">
         <div className="form-check">
@@ -51,7 +54,7 @@ function TaskForm({ addTask }) {
             id="task-title "
             placeholder="Add a task"
           />
-          <label htmlFor="task-title" className="text-success text-opacity-75">
+          <label htmlFor="task-title" className="text-success text-opacity-50">
             Create a new task
           </label>
         </div>

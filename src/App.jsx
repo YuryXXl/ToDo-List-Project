@@ -36,21 +36,27 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <div></div>
-      <div className="">
-        <TaskForm addTask={addTask} />
+      <div className="position-relative">
+        <div style={{ height: "30vh", backgroundColor: "darkgray"}}></div>
+        <div style={{ height: "70vh", backgroundColor: "lightgray"}}></div>
+        <div className="position-absolute mx-auto w-100 top-0">
+          <Navbar />
+
+          <div className="">
+            <TaskForm addTask={addTask} />
+          </div>
+          <TaskList
+            tasks={filteredTasks}
+            completeTask={completeTask}
+            removeTask={removeTask}
+          />
+          <FooterFilter
+            setFilter={setFilter}
+            tasksLeft={tasksLeft}
+            removeCompletedTask={removeCompletedTask}
+          />
+        </div>
       </div>
-      <TaskList
-        tasks={filteredTasks}
-        completeTask={completeTask}
-        removeTask={removeTask}
-      />
-      <FooterFilter
-        setFilter={setFilter}
-        tasksLeft={tasksLeft}
-        removeCompletedTask={removeCompletedTask}
-      />
     </>
   );
 }
