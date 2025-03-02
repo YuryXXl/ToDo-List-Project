@@ -12,14 +12,19 @@ function App() {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch(
-        '/api/todos?user_id=' + USER_ID
-      );
+      const response = await fetch('/api/todos?user_id=' + USER_ID);
+      if (!response.ok) {
+        if (response.status === 404) {
+          setTasks([]);
+        } else {
+          throw new Error(`Error fetching tasks: ${response.status}`);
+        }
+      } else {
       const data = await response.json();
-      console.log("Task data fetched:", data);
-      setTasks(data);
+      setTasks(Array.isArray(data) ? data : []);
+      }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -27,7 +32,6 @@ function App() {
     fetchTasks();
   }, []);
   
-
   const [filter, setFilter] = useState("all");
   const tasksLeft = tasks.filter((task) => !task.completed).length;
  
@@ -35,7 +39,7 @@ function App() {
   const addTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
   };
-  const removeTask = (id) => {
+  const deleteTask = (id) => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
@@ -51,11 +55,11 @@ function App() {
     setTasks(tasks.filter((task) => !task.completed));
   };
 
-  const filteredTasks = tasks.filter((task) => {
+  const filteredTasks = Array.isArray(tasks) ? tasks.filter((task) => {
     if (filter === "completed") return task.completed;
     if (filter === "active") return !task.completed;
     return true;
-  });
+  }) : [];
 
   return (
     <>
@@ -73,7 +77,8 @@ function App() {
           <TaskList
             tasks={filteredTasks}
             completeTask={completeTask}
-            removeTask={removeTask}
+            deleteTask={deleteTask}
+            fetchTasks={fetchTasks}
           />
           <FooterFilter
             setFilter={setFilter}

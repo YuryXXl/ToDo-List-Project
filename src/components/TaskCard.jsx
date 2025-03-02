@@ -1,8 +1,24 @@
 import { IoTrashSharp } from "react-icons/io5";
 import { useState } from "react";
 
-function TaskCard({ task, removeTask, completeTask }) {
-  // const [isStrike, setIsStrike] = useState(false);
+function TaskCard({ task, completeTask, fetchTasks }) {
+  const USER_ID = 42;
+
+  const deleteTask = async (taskId) => {
+    try {
+      const response = await fetch(`/api/todos/${taskId}?user_id=${USER_ID}`,{
+        method: "DELETE",
+      });
+
+
+      if (!response.ok) {
+        throw new Error("Failed to delete task");
+    }
+    fetchTasks();
+    } catch (e) {
+      console.error("Failed to delete task:", e);
+    }
+  };
 
   return (
     <div className="bg-light col-8 rounded-2 col-lg-4">
@@ -10,13 +26,13 @@ function TaskCard({ task, removeTask, completeTask }) {
         <div className="card-body d-flex justify-content-between ">
           <div className="d-flex align-items-center gap-1">
             <div className="form-check">
-              <label htmlFor="exampleCheck1"></label>
+              <label htmlFor={`taskCheck-${task.id}`}></label>
               <input
                 className="form-check-input"
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => completeTask(task.id)}
-                
+                id={`taskCheck-${task.id}`}
               />
             </div>
             <h5
@@ -31,7 +47,7 @@ function TaskCard({ task, removeTask, completeTask }) {
             </p>
           </div>
           <button
-            onClick={() => removeTask(task.id)}
+            onClick={() => deleteTask(task.id)}
             className="text-danger btn"
           >
             <IoTrashSharp />

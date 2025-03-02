@@ -53,6 +53,7 @@ function TaskForm({ addTask }) {
                 onChange={handleTaskInput} 
                 placeholder="Create a new task" 
                 style={{ color: "green", opacity: "0.5" }}
+                id="taskInput"
                 
             />
             
