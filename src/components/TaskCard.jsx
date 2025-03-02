@@ -16,20 +16,18 @@ function TaskCard({ task, removeTask, completeTask }) {
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => completeTask(task.id)}
-                // checked={isStrike}
-                // onChange={(e) => setIsStrike(e.target.checked)}
-                // onClick={() => completeTask(task.id)}
+                
               />
             </div>
             <h5
               style={{ textDecoration: task.completed ? "line-through" : "none" }}
-              // style={{ textDecoration: isStrike ? "line-through" : "none" }}
+            
               className="card-title m-0 text-success text-opacity-75"
             >
-              {task.todo}
+              {task.title}
             </h5>
             <p className="text small card-text m-0 text-success text-opacity-50">
-              {task.date}
+              {task.created_at}
             </p>
           </div>
           <button

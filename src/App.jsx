@@ -1,15 +1,36 @@
 import Navbar from "./components/Navbar";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FooterFilter from "./components/FooterFilter";
 import ThemeToggler from "./components/ThemeToggler";
+import { use } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const USER_ID = 42;
+
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch(
+        '/api/todos?user_id=' + USER_ID
+      );
+      const data = await response.json();
+      console.log("Task data fetched:", data);
+      setTasks(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+  
+
   const [filter, setFilter] = useState("all");
   const tasksLeft = tasks.filter((task) => !task.completed).length;
-  console.log("tasksLeft", tasksLeft);
+ 
 
   const addTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
@@ -20,10 +41,9 @@ function App() {
 
   const completeTask = (id) => {
     setTasks((prev) =>
-      prev.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      // tasks.map((task) =>
-      //   task.id === id ? { ...task, completed: !task.completed } : task
+      prev.map(
+        (task) =>
+          task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
@@ -40,8 +60,8 @@ function App() {
   return (
     <>
       <div className="position-relative">
-        <div style={{ height: "30vh", backgroundColor: "darkgray"}}></div>
-        <div style={{ height: "70vh", backgroundColor: "lightgray"}}></div>
+        <div style={{ height: "30vh", backgroundColor: "darkgray" }}></div>
+        <div style={{ height: "70vh", backgroundColor: "lightgray" }}></div>
         <div className="position-absolute mx-auto w-100 top-0">
           <Navbar>
             <ThemeToggler />

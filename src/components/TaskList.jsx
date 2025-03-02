@@ -13,7 +13,7 @@ function TaskList({ tasks, removeTask, completeTask }) {
           task={task}
           removeTask={removeTask}
           completeTask={completeTask}
-          onClick={() => completeTask(task.checked)}
+          onClick={() => completeTask(task.comleted)}
         />
       ))}
     </li>
