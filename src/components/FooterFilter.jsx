@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const FooterFilter = ({ setFilter, tasksLeft, removeCompletedTask }) => {
   return (
     <div>

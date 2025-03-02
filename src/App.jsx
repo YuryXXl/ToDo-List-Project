@@ -3,6 +3,7 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import { useState } from "react";
 import FooterFilter from "./components/FooterFilter";
+import ThemeToggler from "./components/ThemeToggler";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -18,9 +19,11 @@ function App() {
   };
 
   const completeTask = (id) => {
-    setTasks(
-      tasks.map((task) =>
+    setTasks((prev) =>
+      prev.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
+      // tasks.map((task) =>
+      //   task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
@@ -40,7 +43,9 @@ function App() {
         <div style={{ height: "30vh", backgroundColor: "darkgray"}}></div>
         <div style={{ height: "70vh", backgroundColor: "lightgray"}}></div>
         <div className="position-absolute mx-auto w-100 top-0">
-          <Navbar />
+          <Navbar>
+            <ThemeToggler />
+          </Navbar>
 
           <div className="">
             <TaskForm addTask={addTask} />

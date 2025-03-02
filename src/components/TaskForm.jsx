@@ -9,18 +9,19 @@ function TaskForm({ addTask }) {
   };
 
   const handleCheckboxInput = (e) => {
-    setChecked(e.target.checked);
+    setChecked(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!task) return;
+    if (!task.trim()) return;
 
     const newTask = {
       id: Date.now(),
-      todo: task,
-      checked: false,
+      todo: task.trim(),
+      completed: false,
+      date: new Date().toLocaleString("en-US"),
     };
 
     addTask(newTask);
