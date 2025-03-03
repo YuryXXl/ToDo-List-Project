@@ -41,14 +41,7 @@ function TaskForm({ addTask }) {
       onSubmit={handleSubmit}
       className="bg-light mb-2 col-8 p-3 border border-2 rounded-2 mx-auto mt-2 d-flex justify-content-between align-items-center col-lg-4"
     >
-      {/* <div className="form-check">
-//           <input
-//             onChange={handleCheckboxInput}
-//             className="form-check-input"
-//             type="checkbox"
-//             value={false}
-//           />
-//         </div> */}
+    
       <input
         className="form-control"
         type="text"
