@@ -1,23 +1,23 @@
 import TaskCard from "./TaskCard";
 
 function TaskList({ tasks, deleteTask, fetchTasks, completeTask }) {
-  return tasks.length < 1 ? (
-    <ul className="task-list d-flex flex-column align-items-center mt-5 text-success text-opacity-50">
+  return tasks.length === 0 ? (
+    <p className="task-list d-flex flex-column align-items-center mt-5 text-success text-opacity-50">
       No tasks yet
-    </ul>
+    </p>
   ) : (
-    <li className="task-list d-flex flex-column align-items-center">
+    <ul className="task-list d-flex flex-column align-items-center list-unstyled">
       {tasks.map((task) => (
-        <TaskCard
-          key={task.id}
-          task={task}
-          deleteTask={deleteTask}
-          fetchTasks={fetchTasks}
-          completeTask={completeTask}
-          onClick={() => completeTask(task.comleted)}
-        />
+        <li key={task.id} className="w-100 d-flex justify-content-center">
+          <TaskCard
+            task={task}
+            deleteTask={deleteTask}
+            fetchTasks={fetchTasks}
+            completeTask={completeTask}
+          />
+        </li>
       ))}
-    </li>
+    </ul>
   );
 }
 

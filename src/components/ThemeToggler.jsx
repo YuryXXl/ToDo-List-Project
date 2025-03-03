@@ -3,21 +3,19 @@ import { IoSunnySharp } from "react-icons/io5";
 import { IoSunnyOutline } from "react-icons/io5";
 
 function ThemeToggler() {
-    const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState("light");
 
-    const themeToggler = () => {
-        setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-    }
+  const themeToggler = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
 
-    useEffect(() => {
-        document.documentElement.setAttribute('data-bs-theme', theme);
-    }, [theme]);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-bs-theme", theme);
+  }, [theme]);
 
   return (
-    <button 
-    onClick={themeToggler}
-    className="btn">
-        {theme === 'light' ? <IoSunnySharp /> : <IoSunnyOutline />}
+    <button onClick={themeToggler} className="btn">
+      {theme === "light" ? <IoSunnySharp /> : <IoSunnyOutline />}
     </button>
   );
 }

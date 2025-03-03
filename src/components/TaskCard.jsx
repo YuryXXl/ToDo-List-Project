@@ -1,20 +1,18 @@
 import { IoTrashSharp } from "react-icons/io5";
-import { useState } from "react";
 
 function TaskCard({ task, completeTask, fetchTasks }) {
   const USER_ID = 42;
 
   const deleteTask = async (taskId) => {
     try {
-      const response = await fetch(`/api/todos/${taskId}?user_id=${USER_ID}`,{
+      const response = await fetch(`/api/todos/${taskId}?user_id=${USER_ID}`, {
         method: "DELETE",
       });
 
-
       if (!response.ok) {
         throw new Error("Failed to delete task");
-    }
-    fetchTasks();
+      }
+      fetchTasks();
     } catch (e) {
       console.error("Failed to delete task:", e);
     }
@@ -36,8 +34,9 @@ function TaskCard({ task, completeTask, fetchTasks }) {
               />
             </div>
             <h5
-              style={{ textDecoration: task.completed ? "line-through" : "none" }}
-            
+              style={{
+                textDecoration: task.completed ? "line-through" : "none",
+              }}
               className="card-title m-0 text-success text-opacity-75"
             >
               {task.title}

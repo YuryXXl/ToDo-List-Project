@@ -4,7 +4,6 @@ import TaskList from "./components/TaskList";
 import { useEffect, useState } from "react";
 import FooterFilter from "./components/FooterFilter";
 import ThemeToggler from "./components/ThemeToggler";
-import { use } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -12,29 +11,27 @@ function App() {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('/api/todos?user_id=' + USER_ID);
+      const response = await fetch(`/api/todos?user_id=${USER_ID}`);
+      if (response.status === 404) {
+        console.warn("No tasks found for this user");
+        setTasks([]);
+        return;
+      }
       if (!response.ok) {
-        if (response.status === 404) {
-          setTasks([]);
-        } else {
-          throw new Error(`Error fetching tasks: ${response.status}`);
-        }
-      } else {
+        throw new Error(`Error fetching tasks: ${response.status}`);
+      }
       const data = await response.json();
       setTasks(Array.isArray(data) ? data : []);
-      }
     } catch (err) {
       console.error(err);
     }
   };
-
   useEffect(() => {
     fetchTasks();
   }, []);
-  
+
   const [filter, setFilter] = useState("all");
   const tasksLeft = tasks.filter((task) => !task.completed).length;
- 
 
   const addTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
@@ -45,21 +42,37 @@ function App() {
 
   const completeTask = (id) => {
     setTasks((prev) =>
-      prev.map(
-        (task) =>
-          task.id === id ? { ...task, completed: !task.completed } : task
+      prev.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
-  const removeCompletedTask = () => {
-    setTasks(tasks.filter((task) => !task.completed));
+  const removeCompletedTask = async () => {
+    try {
+
+      const completedTasks = tasks.filter((task) => task.completed);
+
+      await Promise.all(
+        completedTasks.map((task) =>
+          fetch(`/api/todos/${task.id}?user_id=${USER_ID}`, {
+            method: "DELETE",
+          })
+        )
+      );
+
+      fetchTasks();
+    } catch (err) {
+      console.error("Failed to remove completed tasks", err);
+    }
   };
 
-  const filteredTasks = Array.isArray(tasks) ? tasks.filter((task) => {
-    if (filter === "completed") return task.completed;
-    if (filter === "active") return !task.completed;
-    return true;
-  }) : [];
+  const filteredTasks = Array.isArray(tasks)
+    ? tasks.filter((task) => {
+        if (filter === "completed") return task.completed;
+        if (filter === "active") return !task.completed;
+        return true;
+      })
+    : [];
 
   return (
     <>

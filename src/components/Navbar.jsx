@@ -1,5 +1,4 @@
-
-function Navbar({children}) {
+function Navbar({ children }) {
   const curentDate = new Date().toLocaleDateString("en-US");
   return (
     <nav className="navbar">
